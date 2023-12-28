@@ -11,3 +11,4 @@
 ### Câu lệnh sử dụng cơ bản
 
 - php artisan module:make 'module-name'
+- php artisan module:make-migration create_products_table Product
