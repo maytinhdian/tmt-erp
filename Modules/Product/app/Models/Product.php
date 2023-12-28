@@ -34,7 +34,7 @@ class Product extends Model
      */
 
     protected $guarded = [];
-    
+
     public function categories_id(): HasMany
     {
         return $this->hasMany(Category::class);
