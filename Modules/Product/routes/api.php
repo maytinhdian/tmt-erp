@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Modules\Product\app\Http\Controllers\ProductController;
 
 /*
     |--------------------------------------------------------------------------
@@ -13,7 +14,13 @@ use Illuminate\Support\Facades\Route;
     | is assigned the "api" middleware group. Enjoy building your API!
     |
 */
+//Public route
+// Route::get('product', fn (Request $request) => $request->user())->name('product');
+Route::get('products',[ProductController::class,'index']);
 
-Route::middleware(['auth:sanctum'])->prefix('v1')->name('api.')->group(function () {
-    Route::get('product', fn (Request $request) => $request->user())->name('product');
+//Protected route
+Route::middleware(['auth:sanctum'])->name('api.')->group(function () {
+    Route::post('products',[ProductController::class,'store']);
+     Route::put('products/{id}',[ProductController::class,'update']);
+     Route::delete('products/{id}',[ProductController::class,'delete']);
 });

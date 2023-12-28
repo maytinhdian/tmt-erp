@@ -2,10 +2,11 @@
 
 namespace Modules\Product\app\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
+use Modules\Product\app\Models\Product;
 
 class ProductController extends Controller
 {
@@ -14,7 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('product::index');
+        // return view('product::index');
+        return Product::all();
     }
 
     /**
@@ -28,9 +30,17 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'slug' => 'required',
+            'price' => 'required',
+
+        ]);
+
+        return Product::create($request->all());
     }
 
     /**
@@ -38,7 +48,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        return view('product::show');
+        return Product::find($id);
     }
 
     /**
@@ -52,9 +62,11 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id): RedirectResponse
+    public function update(Request $request, $id)
     {
-        //
+        $product = Product::find($id);
+        $product->update($request->all());
+        return $product;
     }
 
     /**
@@ -62,6 +74,11 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
+        return Product::destroy($id);
+    }
+    public function search($name)
+    {
         //
+        return Product::where('name', 'like', '%' . $name . '%')->get();
     }
 }
