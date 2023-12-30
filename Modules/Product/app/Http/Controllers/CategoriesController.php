@@ -3,20 +3,20 @@
 namespace Modules\Product\app\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use Modules\Product\app\Http\Requests\CreateProductRequest;
-use Modules\Product\app\Models\Product;
+use Illuminate\Http\Response;
+use Modules\Product\app\Http\Requests\CreateCategoryRequest;
+use Modules\Product\app\Models\Category;
 
-class ProductController extends Controller
+class CategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        // return view('product::index');
-        return Product::all();
+        return Category::all();
     }
 
     /**
@@ -30,13 +30,9 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CreateProductRequest $request)
+    public function store(CreateCategoryRequest $request)
     {
-    
-        $input = $request->all();
-        $input['slug'] = Str::slug($request->name);
-        return Product::create($input);
-        // return $request;
+        return Category::create($request->all());
     }
 
     /**
@@ -44,7 +40,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        return Product::find($id);
+        return Category::find($id);
     }
 
     /**
@@ -52,7 +48,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        return view('product::edit');
+        return 'Category edit';
     }
 
     /**
@@ -60,9 +56,9 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $product = Product::find($id);
-        $product->update($request->all());
-        return $product;
+        $category = Category::find($id);
+        $category->update($request->all());
+        return $category;
     }
 
     /**
@@ -70,11 +66,11 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        return Product::destroy($id);
+        return Category::destroy($id);
     }
     public function search($name)
     {
         //
-        return Product::where('name', 'like', '%' . $name . '%')->get();
+        return Category::where('name', 'like', '%' . $name . '%')->get();
     }
 }
