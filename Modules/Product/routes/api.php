@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Modules\Product\app\Http\Controllers\CategoriesController;
+use Modules\Product\app\Http\Controllers\ProductAttributeController;
 use Modules\Product\app\Http\Controllers\ProductController;
 
 /*
@@ -18,6 +19,7 @@ use Modules\Product\app\Http\Controllers\ProductController;
 // Route::get('product', fn (Request $request) => $request->user())->name('product');
 Route::get('products', [ProductController::class, 'index']);
 Route::get('categories', [CategoriesController::class, 'index']);
+Route::get('attributes', [ProductAttributeController::class, 'index']);
 
 //Protected route
 Route::middleware(['auth:sanctum'])->name('api.')->group(function () {
@@ -31,5 +33,10 @@ Route::middleware(['auth:sanctum'])->name('api.')->group(function () {
     Route::post('categories', [CategoriesController::class, 'store']);
     Route::put('categories/{id}', [CategoriesController::class, 'update']);
     Route::delete('categories/{id}', [CategoriesController::class, 'delete']);
+
+    //ProductAttribute CRUD route
+    Route::post('attributes', [ProductAttributeController::class, 'store']);
+    Route::put('attributes/{id}', [ProductAttributeController::class, 'update']);
+    Route::delete('attributes/{id}', [ProductAttributeController::class, 'delete']);
 
 });

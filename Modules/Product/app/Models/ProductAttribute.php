@@ -4,9 +4,9 @@ namespace Modules\Product\app\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Modules\Product\Database\factories\CategoryFactory;
+use Modules\Product\Database\factories\AttributeFactory;
 
-class Category extends Model
+class ProductAttribute extends Model
 {
     use HasFactory;
 
@@ -14,9 +14,6 @@ class Category extends Model
      * The attributes that are mass assignable.
      */
     protected $fillable = ['name'];
-    protected $hidden=['created_at','updated_at'];
-    protected static function newFactory()
-    {
-        //return CategoryFactory::new();
-    }
+
+
 }
