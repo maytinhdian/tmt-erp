@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Modules\Product\app\Http\Controllers\CategoriesController;
-use Modules\Product\app\Http\Controllers\ProductAttributeController;
 use Modules\Product\app\Http\Controllers\ProductController;
+use Modules\Product\app\Http\Controllers\CategoriesController;
+use Modules\Product\app\Http\Controllers\AttributeValueController;
+use Modules\Product\app\Http\Controllers\ProductAttributeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,10 +17,11 @@ use Modules\Product\app\Http\Controllers\ProductController;
 |
  */
 //Public route
-// Route::get('product', fn (Request $request) => $request->user())->name('product');
+
 Route::get('products', [ProductController::class, 'index']);
 Route::get('categories', [CategoriesController::class, 'index']);
 Route::get('attributes', [ProductAttributeController::class, 'index']);
+Route::get('attribvalues', [AttributeValueController::class, 'index']);
 
 //Protected route
 Route::middleware(['auth:sanctum'])->name('api.')->group(function () {
@@ -38,5 +40,10 @@ Route::middleware(['auth:sanctum'])->name('api.')->group(function () {
     Route::post('attributes', [ProductAttributeController::class, 'store']);
     Route::put('attributes/{id}', [ProductAttributeController::class, 'update']);
     Route::delete('attributes/{id}', [ProductAttributeController::class, 'delete']);
+
+    //AttributeValue CRUD route
+    Route::post('attribvalues', [AttributeValueController::class, 'store']);
+    Route::put('attribvalues/{id}', [AttributeValueController::class, 'update']);
+    Route::delete('attribvalues/{id}', [AttributeValueController::class, 'delete']);
 
 });

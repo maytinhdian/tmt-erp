@@ -12,3 +12,8 @@
 
 - php artisan module:make 'module-name'
 - php artisan module:make-migration create_products_table Product
+
+### Schema create table  
+
+- $table -> enum('is_saleable',['yes','no'])
+- $table -> foreignId('created_by')->constrained('users')

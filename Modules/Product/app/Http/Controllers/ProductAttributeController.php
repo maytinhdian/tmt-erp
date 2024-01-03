@@ -15,7 +15,8 @@ class ProductAttributeController extends Controller
      */
     public function index()
     {
-        return ProductAttribute::all();
+        // return ProductAttribute::all();
+        return response()->json(ProductAttribute::all());
     }
 
     /**

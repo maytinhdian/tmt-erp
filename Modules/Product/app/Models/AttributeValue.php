@@ -14,7 +14,7 @@ class AttributeValue extends Model
     /**
      * The attributes that are mass assignable.
      */
-    protected $fillable = ['name'];
+    protected $fillable = ['name','product_id','attribute_id','value'];
 
     protected static function newFactory()
     {

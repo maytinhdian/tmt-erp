@@ -13,7 +13,8 @@ class ProductAttribute extends Model
     /**
      * The attributes that are mass assignable.
      */
-    protected $fillable = ['name'];
-
+    // protected $fillable = [];
+    protected $guarded=[];
+    protected $hidden=['created_at','updated_at'];
 
 }
