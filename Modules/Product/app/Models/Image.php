@@ -15,6 +15,10 @@ class Image extends Model
      */
     protected $fillable = ['image'];
 
+    public function product(){
+        return $this->belongsTo('Modules\Product\app\Models\Product');
+    }
+
     protected static function newFactory()
     {
         //return ImageFactory::new();

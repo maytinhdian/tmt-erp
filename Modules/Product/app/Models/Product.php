@@ -39,6 +39,10 @@ class Product extends Model
     {
         return $this->hasMany(Category::class);
     }
+    public function images_id(): HasMany
+    {
+        return $this->hasMany(Image::class);
+    }
     protected static function newFactory()
     {
         //return ProductFactory::new();

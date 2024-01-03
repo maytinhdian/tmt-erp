@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('slug');
             $table->string('description')->nullable();
             $table->float('price',5,2);
-            $table->unsignedBigInteger('categories_id');
+            $table->foreignId('categories_id')->constrained('categories');
+            $table->foreignId('images_id')->constrained('images');
             $table->timestamps();
             // $table->foreign('categories_id')->references('id')->on('category');
         });
