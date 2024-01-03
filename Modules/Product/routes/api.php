@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Modules\Product\app\Http\Controllers\ImagesController;
 use Modules\Product\app\Http\Controllers\ProductController;
 use Modules\Product\app\Http\Controllers\CategoriesController;
 use Modules\Product\app\Http\Controllers\AttributeValueController;
@@ -22,6 +23,7 @@ Route::get('products', [ProductController::class, 'index']);
 Route::get('categories', [CategoriesController::class, 'index']);
 Route::get('attributes', [ProductAttributeController::class, 'index']);
 Route::get('attribvalues', [AttributeValueController::class, 'index']);
+Route::post('images',[ImagesController::class, 'imageUpload']);
 
 //Protected route
 Route::middleware(['auth:sanctum'])->name('api.')->group(function () {
