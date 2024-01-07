@@ -18,8 +18,6 @@ return new class extends Migration
             $table->string('description');
             $table->float('price');
             $table->foreignId('categories_id')->constrained(table:'categories');
-            $table->unsignedBigInteger('image_id');
-            $table->unsignedBigInteger('product_attribute_values');
             $table->unsignedBigInteger('created_id')->nullable();
             $table->timestamps();
         });

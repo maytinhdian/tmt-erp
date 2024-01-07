@@ -2,7 +2,10 @@
 
 namespace Modules\Product\database\seeders;
 
+use Faker\Factory;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class ProductDatabaseSeeder extends Seeder
 {
@@ -11,6 +14,20 @@ class ProductDatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // $this->call([]);
+        $faker = Factory::create();
+
+        $limit = 10;
+        for ($limit = 0; $limit <= 10; $limit++) {
+            $name = $faker->word() . $faker->randomDigit();
+            DB::table('products')->insert([
+                'name' => $name,
+                'slug' => Str::slug($name),
+                'description' => $faker->text(),
+                'categories_id' => $faker->numberBetween(1, 6),
+                'price' => $faker->randomDigit(),
+                'created_at' => Date('Y-m-d H:i:s'),
+                'updated_at' => Date('Y-m-d H:i:s'),
+            ]);
+        }
     }
 }
