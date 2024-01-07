@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('images', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('image');
-            $table->foreignId('product_id')->default(1)->constrained('products');
+            $table->string('name',200)->nullable()->unique();
+            $table->jsonb('allowed_attributes')->nullable();
+            $table->foreignId('parent_id')->default(0)->constrained(table:'categories',column:'id');
             $table->unsignedBigInteger('created_id')->nullable();
             $table->timestamps();
         });
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('images');
+        Schema::dropIfExists('categories');
     }
 };

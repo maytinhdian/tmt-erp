@@ -13,14 +13,15 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->string('slug');
-            $table->string('description')->nullable();
-            $table->float('price',5,2);
-            $table->foreignId('categories_id')->constrained('categories');
-            $table->foreignId('images_id')->constrained('images');
+            $table->string('name',255)->nullable(false)->unique();
+            $table->string('slug',255);
+            $table->string('description');
+            $table->float('price');
+            $table->foreignId('categories_id')->constrained(table:'categories');
+            $table->unsignedBigInteger('image_id');
+            $table->unsignedBigInteger('product_attribute_values');
+            $table->unsignedBigInteger('created_id')->nullable();
             $table->timestamps();
-            // $table->foreign('categories_id')->references('id')->on('category');
         });
     }
 
