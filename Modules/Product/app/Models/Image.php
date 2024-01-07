@@ -23,4 +23,10 @@ class Image extends Model
     {
         //return ImageFactory::new();
     }
+    protected static function booted()
+    {
+        static::creating(function ($model) {
+            $model->created_id = auth()->user()->id;
+        });
+    }
 }

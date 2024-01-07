@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Product\Database\factories\AttributeValueFactory;
 
-class AttributeValue extends Model
+class ProductAttributeValue extends Model
 {
     use HasFactory;
 
@@ -26,5 +26,11 @@ class AttributeValue extends Model
     }
     public function product_id(): HasMany{
         return $this->hasMany(Product::class);
+    }
+    protected static function booted()
+    {
+        static::creating(function ($model) {
+            $model->created_id = auth()->user()->id;
+        });
     }
 }

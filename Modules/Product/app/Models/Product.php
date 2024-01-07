@@ -47,4 +47,10 @@ class Product extends Model
     {
         //return ProductFactory::new();
     }
+    protected static function booted()
+    {
+        static::creating(function ($model) {
+            $model->created_id = auth()->user()->id;
+        });
+    }
 }
