@@ -22,10 +22,11 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+        DB::statement('SET FOREIGN_KEY_CHECKS=1');
         DB::table('users')->insert([
             'name'=>'Le Thanh Nha',
             'email'=>'tnhalk@maytinhdian.com',
-            'password'=>Hash::make('123456'),
+            'id'=>0,
             'created_at'=>Date('Y-m-d H:i:s'),
             'updated_at'=>Date('Y-m-d H:i:s'),
         ]);

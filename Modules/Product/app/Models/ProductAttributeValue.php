@@ -14,13 +14,13 @@ class ProductAttributeValue extends Model
     /**
      * The attributes that are mass assignable.
      */
-    protected $fillable = ['name','product_id','attribute_id','value'];
+    protected $fillable = ['product_id','product_attribute_id','attribute_id','value'];
 
     protected static function newFactory()
     {
         //return AttributeValueFactory::new();
     }
-    public function attribute_id(): HasMany
+    public function product_attribute_id(): HasMany
     {
         return $this->hasMany(ProductAttribute::class);
     }

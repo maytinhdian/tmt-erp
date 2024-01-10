@@ -12,6 +12,7 @@
 
 - php artisan module:make 'module-name'
 - php artisan module:make-migration create_products_table Product
+- php artisan module:seed --class=TenClassSeeder Product
 
 ### Schema create table  
 

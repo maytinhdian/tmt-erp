@@ -35,8 +35,9 @@ class ProductAttributeController extends Controller
         $request->validate([
             'name' => 'required|min:6',
         ]);
-
-        return ProductAttribute::create($request->all());
+        $input = $request->all();
+        $input['slug'] = Str::slug($request->name);
+        return ProductAttribute::create($input);
     }
 
     /**
